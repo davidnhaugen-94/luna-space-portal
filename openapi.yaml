@@ -1,0 +1,180 @@
+openapi: 3.0.0
+info:
+  title: Luna Space Portal
+  description: Welcome to the Luna Space Portal developer reference. This unified API platform aggregates real-time NASA data streams to track near-Earth asteroids, monitor live solar weather notifications, and fetch the daily featured astronomy media assets.
+  version: 1.0.0
+servers:
+  - url: https://api.nasa.gov
+paths:
+  /neo/rest/v1/feed:
+    get:
+      summary: Retrieves near-Earth asteroid information for the next three days.
+      parameters: 
+        - name: api_key
+          in: query 
+          description: API key for authentication.
+          required: true
+          schema: 
+            type: string
+            example: "DEMO_KEY"
+        - name: start_date
+          in: query 
+          description: Today's date.
+          required: false
+          schema:
+            type: string 
+            format: date
+            example: "2026-08-26"
+        - name: end_date
+          in: query
+          description: End date of data information. Users can retrieve up to three days of data.
+          required: false
+          schema:
+            type: string  
+            format: date
+            example: "2026-08-29"
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object 
+                properties: 
+                  near_earth_objects:
+                    type: object
+                    description: Object containing date keys mapping to lists of asteroids.  
+                    additionalProperties: 
+                      type: array
+                      description: List of asteroids on a specific date.
+                      items:
+                        type: object 
+                        properties: 
+                          name:
+                            type: string
+                            description: Name of near-Earth asteroid.
+                            example: "221455 (2006 BC10)"
+                          nasa_jpl_url:
+                            type: string
+                            description: Detail information about near-Earth asteroid.
+                            example: "https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=2221455"
+                          absolute_magnitude_h:
+                            type: number
+                            description: Intrinsic brightness of near-Earth asteroid.
+                            example: 19.52
+                          estimated_diameter_max_meters:
+                            type: number
+                            description: Estimated size of asteroid in meters.
+                            example: 741.3784854
+                          relative_velocity:
+                            type: number
+                            description: Current velocity of near-Earth asteroid in kilometers per second.
+                            example: 19.003204075
+                          is_potentially_hazardous_asteroid:
+                            type: boolean
+                            description: Is potentially hardardous to earth.
+                            example: true
+                          miss_distance_kilo:
+                            type: number
+                            description: Distance from Earth on fly by in kilometers.
+                            example: 3584832.90733736
+                          is_sentry_object:
+                            type: boolean
+                            description: Could impact Earth in near future.
+                            example: false
+  /planetary/apod:
+    get:
+      summary: Retrieves the Astronmy Picture of the Day fro NASA.
+      parameters: 
+        - name: api_key
+          in: query 
+          description: API key for authentication.
+          required: true
+          schema: 
+            type: string
+            example: "DEMO_KEY"
+        - name: date
+          in: query 
+          description: The date of the APOD.
+          required: false
+          schema:
+            type: string 
+            format: date
+            example: "2026-08-26"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object 
+                properties: 
+                  copyright:
+                    type: string 
+                    description: The name of the copyright holder or owner of the image.
+                    example: "APOD TEAM"
+                  date:
+                    type: string 
+                    description: Date of the APOD image.
+                    example: "2026-08-27"
+                  explanation:
+                    type: string 
+                    description: An explanation of the image.
+                    example: "This is a photo of the aurora."
+                  hdurl:
+                    type: string 
+                    description: URL for the HD version of image.
+                    example: "https://apod.nasa.gov/apod/image/2608/Aurora_over_Fall.jpg"
+                  title:
+                    type: string 
+                    description: Title of the APOD. 
+                    example: "Aurora"
+  /DONKI/FLR:
+    get:
+      summary: Retrieves latest solar flare data.
+      parameters:
+        - name: api_key
+          in: query 
+          description: API key for authentication.
+          required: true
+          schema: 
+            type: string
+            example: "DEMO_KEY"
+        - name: start_date
+          in: query 
+          description: Today's date.
+          required: false
+          schema:
+            type: string 
+            format: date
+            example: "2026-08-26"
+        - name: end_date
+          in: query 
+          description: End date of retreived data. Users can retrieve up to three days of data.
+          required: false
+          schema:
+            type: string 
+            format: date
+            example: "2026-08-26"
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+                schema:
+                  type: object 
+                  properties: 
+                    flare_today:
+                      type: boolean
+                      description: Whether there was a Solar flare today.
+                      example: true
+                    flrID:
+                      type: string 
+                      description: Solar flare ID.
+                      example: 2026-08-30T01:10:00-FLR-001
+                    classType:
+                      type: string
+                      description: Severity of flare.
+                      example: C3.0
+        '503':
+          description: Service unavailable.

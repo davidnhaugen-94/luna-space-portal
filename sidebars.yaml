@@ -1,0 +1,14 @@
+- page: lunaspaceportal-docs/introduction.md
+
+- group: Getting Started
+  items:
+    - page: lunaspaceportal-docs/getting-started-tutorial.md
+
+- group: Core Data Standards
+  items:
+    - page: lunaspaceportal-docs/data-handling-guides.md
+    - page: lunaspaceportal-docs/errors-and-troubleshooting.md
+
+- group: Technical API Reference
+  items:
+    - page: openapi.yaml
