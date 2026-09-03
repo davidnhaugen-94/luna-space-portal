@@ -32,7 +32,7 @@ paths:
           schema:
             type: string  
             format: date
-            example: "2026-08-29"
+            example: "2026-08-28"
       responses:
         '200':
           description: Successful response.
@@ -72,7 +72,7 @@ paths:
                             example: 19.003204075
                           is_potentially_hazardous_asteroid:
                             type: boolean
-                            description: Is potentially hardardous to earth.
+                            description: Is potentially hazardous to earth.
                             example: true
                           miss_distance_kilo:
                             type: number
@@ -84,7 +84,7 @@ paths:
                             example: false
   /planetary/apod:
     get:
-      summary: Retrieves the Astronmy Picture of the Day fro NASA.
+      summary: Retrieves the Astronomy Picture of the Day from NASA.
       parameters: 
         - name: api_key
           in: query 
@@ -116,7 +116,7 @@ paths:
                   date:
                     type: string 
                     description: Date of the APOD image.
-                    example: "2026-08-27"
+                    example: "2026-08-26"
                   explanation:
                     type: string 
                     description: An explanation of the image.
@@ -150,12 +150,12 @@ paths:
             example: "2026-08-26"
         - name: end_date
           in: query 
-          description: End date of retreived data. Users can retrieve up to three days of data.
+          description: End date of retrieved data. Users can retrieve up to three days of data.
           required: false
           schema:
             type: string 
             format: date
-            example: "2026-08-26"
+            example: "2026-08-27"
       responses:
         '200':
           description: Successful response.

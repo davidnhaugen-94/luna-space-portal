@@ -1,7 +1,7 @@
-- page: lunaspaceportal-docs/introduction.md
-
 - group: Getting Started
   items:
+    - page: index.md
+      label: Introduction
     - page: lunaspaceportal-docs/getting-started-tutorial.md
 
 - group: Core Data Standards

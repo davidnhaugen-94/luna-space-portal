@@ -1,6 +1,3 @@
-apis:
-  luna-api@v1:
-    root: openapi.yaml
 theme:
   stylesheets:
     - '@theme/styles.css'
