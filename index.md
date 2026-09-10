@@ -2,23 +2,22 @@
 
 Welcome to the official developer reference for the **Luna Space Portal API**. This platform acts as a unified digital gateway, aggregating real-time space data feeds directly from NASA's deep-space telemetries.
 
-By integrating this API, third-party software engineers can instantly pull high-resolution cosmic media files, track passing near-Earth asteroids, and view early warning notifications regarding solar weather anomalies inside a single platform interface.
+By integrating this API, third-party software engineers can instantly pull high-resolution cosmic media files, track passing near-Earth asteroids, and determine whether the northern lights will be visible in a specified location based on the retrieved geomagnetic storm data.
 
 ## Core API Infrastructure
 The platform is broken down into three core modules:
-1.  **Media Services (APOD):** Delivers daily imagery captured by deep-space sensors alongside descriptive analysis from professional astronomers.
-2.  **Planetary Defense (NEO Tracker):** Computes real-time proximity and sizing telemetry for near-Earth asteroids.
-3.  **Space Weather (DONKI Systems):** Provides daily data on active Coronal Mass Ejections (CMEs), solar flares, and geomagnetic storms.
+1.  **Media Services (APOD):** Delivers a daily image, video, or animation of the universe with a descriptive analysis from professional astronomers.
+2.  **Northern Lights Forecast (DONKI Systems):** Provides the daily forecast for viewing the northern lights in a specified location. **Note:** This module maps geomagnetic storm data against local weather conditions, requiring developers to integrate a secondary external weather dataset (such as the OpenWeather API).
+3.  **Near-Earth Object Tracker:** Computes real-time proximity and sizing telemetry for near-Earth asteroids.
 
 ---
 
 ## Authentication & Authorization
 
-To protect federal database infrastructure, all client software making calls to the Luna Space Portal must authenticate by passing an API key parameter inside the URL query string.
+To protect federal database infrastructure, all client software making calls to the Luna Space Portal must authenticate by passing an API key parameter inside the URL query string using the following authentication pattern:
 
-### Authentication Pattern
 ```http
-GET https://nasa.gov
+GET https://api.nasa.gov
 ```
 
 ### Key Management Guidelines

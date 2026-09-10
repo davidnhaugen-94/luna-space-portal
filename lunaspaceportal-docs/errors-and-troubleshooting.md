@@ -21,10 +21,14 @@ The Luna Space Portal API utilizes standardized HTTP response codes to indicate 
 *   **Root Cause:** The `api_key` argument is missing from the query string or does not match an active developer profile signature.
 *   **Resolution:** Re-verify your access token character-by-character inside your application configuration variables.
 
+### 429 Too Many Requests
+*   **Root Cause:** The client application has exceeded the allocated evaluation limit of 40 requests per hour or 1,000 requests per day.
+*   **Resolution:** Implement client-side caching or throttle requests to align with the rate limit guidelines outlined in the Introduction.
+
 ---
 
 ## Server-Side Failures (5xx)
 
 ### 503 Service Unavailable
 *   **Root Cause:** Remote tracking equipment or backend databases are experiencing intense network load spikes, data pipeline resets, or scheduled system infrastructure upgrades.
-*   **Resiliency Protocol:** This represents a brief, temporary server state. The client software must never launch persistent loop spam requests during a outage window. Implement a systematic **exponential backoff schedule** to pause application attempts for a minimum of 5 minutes before retrying connection handshakes.
+*   **Resiliency Protocol:** This represents a brief, temporary server state. The client software must never launch persistent loop spam requests during an outage window. Implement a systematic **exponential backoff schedule** to pause application attempts for a minimum of 5 minutes before retrying connection handshakes.
